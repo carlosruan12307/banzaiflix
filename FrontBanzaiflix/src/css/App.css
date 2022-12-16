@@ -13,12 +13,14 @@
 
 .search {
   margin-right: 40px;
+  position: static;
+  display: flex;
 }
 
 .navbar-nav a {
   position: relative;
   color: white;
-  margin-left: 100px;
+  margin: 14px;
   z-index: 2;
 }
 .navbar-nav a:before {
@@ -39,5 +41,15 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-.navbar-nav a:hover {
+
+@media screen and (max-width: 730px) {
+  .search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .sandwitch {
+    margin: auto;
+  }
 }

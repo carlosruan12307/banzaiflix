@@ -10,14 +10,20 @@ function Header() {
     $("#" + e.target.id).css("color", "red");
   };
   return (
-    <nav className="navbar navbar-expand  navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-sm ts navbar-dark bg-dark">
       <div className="navbar-brand">
         <a href="/">
-          {" "}
           <img className="logo" src={flix}></img>
         </a>
       </div>
-      <div className="navbar-nav">
+      <button
+        className="navbar-toggler sandwitch"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <ul id="nav" className="navbar-nav navbar-collapse collapse">
         <li className="nav-item ">
           <a id="a1" onClick={clickLink} href="#" className="nav-link">
             Inicio
@@ -38,11 +44,11 @@ function Header() {
             Meus Favoritos
           </a>
         </li>
-      </div>
-      <div className="d-flex ms-auto search">
-        <button class="mt-2 text-white input-group-item fa-solid fa-magnifying-glass fa-search"></button>
-        <input className="form-control"></input>
-      </div>
+        <div className=" ms-auto search">
+          <button class="mt-2 text-white input-group-item fa-solid fa-magnifying-glass fa-search"></button>
+          <input className="form-control"></input>
+        </div>
+      </ul>
     </nav>
   );
 }
