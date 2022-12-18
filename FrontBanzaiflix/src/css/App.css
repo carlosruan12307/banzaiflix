@@ -25,7 +25,6 @@
 }
 .navbar-nav a:before {
   content: "";
-
   bottom: 0px;
   left: 0px;
   width: 100%;
@@ -53,3 +52,42 @@
     margin: auto;
   }
 }
+
+.principal {
+  background-image: url("../assets/principal.png");
+  background-size: cover;
+  background-position: center 3%;
+  background-repeat: no-repeat;
+  height: 1000px;
+}
+
+.btn-main {
+  background-color: rgba(255, 255, 255, 0.384);
+  color: white;
+  height: 40px;
+  width: 400px;
+}
+
+.catalog{
+  background-color: black;
+  height: 900px;
+  width: auto;
+  color: white;
+}
+
+.bla{
+  height: 300px;
+}
+.cards-wrapper{
+  width: inherit;
+  display: flex;
+  justify-content: space-around;
+}
+.btn-next{
+  width: 40px;
+}
+
+.btn-prev{
+  width: 40px;
+}
+
