@@ -4,7 +4,7 @@ function Main() {
   return (
     <main className="">
       <div className="d-flex flex-column flex-wrap justify-content-center principal  ">
-        <h1 className="row stranger text-white m-5 ">STRANGER THINGS</h1>
+        <h1 className="row stranger text-white m-2"><a href="https://fontmeme.com/pt/fonte-de-stranger-things/"><img src="https://fontmeme.com/permalink/221218/1df59e3f82fc338190d882577fa9adf6.png" alt="fonte-de-stranger-things" border="0"/></a></h1>
         <h4 className="ms-5 col-3 text-white">
           Quando uma garota desaparece, a cidade toda participa nas buscas. Mas o
           que encontram são segredos, forças sobrenaturais e uma menina
