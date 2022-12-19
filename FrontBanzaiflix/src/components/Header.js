@@ -11,15 +11,21 @@ function Header() {
 
   const clickLink = (e) => {
     $("a").css("color", "white");
+    if(e.target.id === "logo-link"){
+      $("#inicio-link").css("color", "red");
+    }
+   
     $("#" + e.target.id).css("color", "red");
+    
   };
   return (
     <div>
       <header className="fixed-top">
         <nav className="navbar navbar-expand-sm ts navbar-dark bg-dark">
           <div className="navbar-brand">
-            <a href="#">
-              <img className="logo" src={flix}></img>
+            <a  href="#" >
+              <img id="logo-link" onClick={clickLink} className="logo" src={flix}></img>
+              
             </a>
           </div>
           <button
@@ -31,23 +37,23 @@ function Header() {
           </button>
           <ul id="nav" className="navbar-nav navbar-collapse collapse">
             <li className="nav-item ">
-              <a id="a1" onClick={clickLink} href="#" className="nav-link">
+              <a id="inicio-link" onClick={clickLink} href="#" className="nav-link">
                 Inicio
               </a>
             </li>
             <li className="nav-item">
-              <a id="a2" onClick={clickLink} href="#" className="nav-link">
+              <a id="series-link" onClick={clickLink} href="#" className="nav-link">
                 Series
               </a>
             </li>
             <li className="nav-item">
-              <a id="a3" onClick={clickLink} href="#" className="nav-link">
+              <a id="filmes-link" onClick={clickLink} href="#" className="nav-link">
                 Filmes
               </a>
             </li>
             <li className="nav-item">
               <a
-                id="a4"
+                id="favoritos-link"
                 onClick={clickLink}
                 href="#section-favoritos"
                 className="nav-link"

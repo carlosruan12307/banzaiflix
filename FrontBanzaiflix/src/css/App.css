@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--scroll-padding,150px);
 }
 
 .fa-search {
@@ -35,7 +36,7 @@ html {
   content: "";
   bottom: 0px;
   left: 0px;
-  width: 100vw;
+  width: 100%;
   background-color: red;
   height: 1px;
   transform-origin: bottom left;
@@ -66,7 +67,7 @@ html {
 
 .catalog {
   background-color: black;
-  height: 1650px;
+  height: 1390px;
   width: 100vw;
   color: white;
 }
