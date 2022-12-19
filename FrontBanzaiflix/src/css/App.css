@@ -36,7 +36,7 @@ html {
   content: "";
   bottom: 0px;
   left: 0px;
-  width: 100%;
+  width: 100vw;
   background-color: red;
   height: 1px;
   transform-origin: bottom left;
@@ -131,7 +131,7 @@ html {
   }
 }
 
-@media screen and (max-width: 302px) {
+@media screen and (max-width: 314px) {
   .sandwitch {
     margin-left: 100px;
   }

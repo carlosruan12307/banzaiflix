@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer
       id="foot"
-      className="footer  row d-flex flex-wrap align-content-center justify-content-center"
+      className="footer d-flex align-content-center flex-wrap  justify-content-center"
     >
       <div className=" cols">
         <i className="fa-brands fa-facebook fa-footer-icon"></i>
