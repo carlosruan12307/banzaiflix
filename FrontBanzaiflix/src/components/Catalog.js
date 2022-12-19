@@ -91,7 +91,7 @@ function Catalog() {
         </div>
       </section>
 
-      <section id="section-top10" >
+      <section id="section-top10">
         <h1 className="text-white ms-5 mt-3">Top 10 no Brasil hoje</h1>
 
         <div
@@ -179,7 +179,7 @@ function Catalog() {
           </div>
         </div>
       </section>
-      <section id="section-favoritos" >
+      <section id="section-favoritos">
         <h1 className="text-white ms-5 mt-3">Meus Favoritos</h1>
 
         <div

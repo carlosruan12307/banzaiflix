@@ -1,7 +1,11 @@
-html{
-scroll-behavior: smooth;
-scroll-padding-top: var(--scroll-padding, 100px);
+#root body html footer {
+  width: 100vw;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 .fa-search {
   font-size: 30px;
   margin-right: 10px;
@@ -31,7 +35,7 @@ scroll-padding-top: var(--scroll-padding, 100px);
   content: "";
   bottom: 0px;
   left: 0px;
-  width: 100%;
+  width: 100vw;
   background-color: red;
   height: 1px;
   transform-origin: bottom left;
@@ -43,18 +47,6 @@ scroll-padding-top: var(--scroll-padding, 100px);
 .navbar-nav a:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
-
-@media screen and (max-width: 730px) {
-  .search {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .sandwitch {
-    margin: auto;
-  }
 }
 
 .principal {
@@ -72,36 +64,33 @@ scroll-padding-top: var(--scroll-padding, 100px);
   width: 400px;
 }
 
-.catalog{
+.catalog {
   background-color: black;
   height: 1650px;
-  width: auto;
+  width: 100vw;
   color: white;
 }
 
-.bla{
-  height: 300px;
-}
-.cards-wrapper{
+.cards-wrapper {
   width: inherit;
   display: flex;
   justify-content: space-around;
 }
-.btn-next{
+.btn-next {
   width: 40px;
 }
 
-.btn-prev{
+.btn-prev {
   width: 40px;
 }
-.footer{
+.footer {
   background-color: rgba(0, 0, 0, 0.938);
   color: white;
-  height: 350px;
-  width: auto;
+  height: 380px;
+  width: 100vw;
 }
 
-.fa-footer-icon{
+.fa-footer-icon {
   font-size: 30px;
   background-color: none;
   border: none;
@@ -109,25 +98,55 @@ scroll-padding-top: var(--scroll-padding, 100px);
   margin: 10px;
 }
 
-.footer .col-3{
-  width: 300px;
-  margin-top: 30px;
+.footer .cols {
+  width: 350px;
+  margin: 20px;
 }
 
-.col-3 h4{
+.cols h4 {
   margin-top: 10px;
   padding: 6px;
   color: rgb(109, 106, 106);
   font-size: 20px;
 }
-.col-3 h5{
+.cols h5 {
   margin-top: 26px;
   font-size: 15px;
   color: rgb(109, 106, 106);
 }
 
-.btn-footer{
+.btn-footer {
   color: rgb(109, 106, 106);
   border-color: rgb(109, 106, 106);
+}
+.img-stranger {
+  width: 990px;
+  height: 200px;
+}
 
+@media screen and (max-width: 780px) {
+  .search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 302px) {
+  .sandwitch {
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 1434px) {
+  .footer {
+    height: 750px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footer {
+    height: 1200px;
+  }
+  .catalog {
+    height: 900px;
+  }
 }
