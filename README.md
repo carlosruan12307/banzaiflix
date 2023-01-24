@@ -1,5 +1,5 @@
 # banzaiflix
-site series e filmes, back e front
+site series e filmes, back e front.
 
 
 
