@@ -1,6 +1,7 @@
 package com.banzaiflix_backend.banzaiflix_backend.filters;
 
 import java.io.IOException;
+import java.util.stream.Stream;
 
 import javax.crypto.SecretKey;
 
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
@@ -30,40 +32,43 @@ public class JWTValidatorFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         // String jwt = request.getHeader(JWTInterface.JWT_HEADER);
         Cookie cookieJWT = WebUtils.getCookie(request, "jwt");
-        String jwt = cookieJWT.getValue();
-        
-        if(jwt != null){
-           try {
-            SecretKey key = Keys.hmacShaKeyFor(JWTInterface.JWT_KEY.getBytes());
-            Claims claims = Jwts.parserBuilder()
-            .setSigningKey(key)
-            .build()
-            .parseClaimsJws(jwt)
-            .getBody();
-            String username = String.valueOf(claims.get("username"));
-            String authorities = (String) claims.get("authorities");
-            Authentication auth = new UsernamePasswordAuthenticationToken(username, null,AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
-            SecurityContextHolder.getContext().setAuthentication(auth);
-           } catch (Exception e) {
-            // TODO: handle exception
-            throw new BadCredentialsException("invalid token");
-           }
-        }else{
+
+        if (cookieJWT.getValue() != null) {
+            try {
+                String jwt = cookieJWT.getValue();
+                SecretKey key = Keys.hmacShaKeyFor(JWTInterface.JWT_KEY.getBytes());
+                Claims claims = Jwts.parserBuilder()
+                        .setSigningKey(key)
+                        .build()
+                        .parseClaimsJws(jwt)
+                        .getBody();
+                String username = String.valueOf(claims.get("username"));
+                String authorities = (String) claims.get("authorities");
+                Authentication auth = new UsernamePasswordAuthenticationToken(username, null,
+                        AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            } catch (Exception e) {
+                // TODO: handle exception
+                throw new BadCredentialsException("invalid token");
+            }
+        } else {
             throw new BadCredentialsException("invalid token");
         }
 
         filterChain.doFilter(request, response);
     }
-        // TODO Auto-generated method stub
+    // TODO Auto-generated method stub
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         // TODO Auto-generated method stub
-        return request.getServletPath().equals("/");
+        AntPathMatcher pathMatcher = new AntPathMatcher();
+        String[] excluded_urls = {
+                "/",
+                "/brincando/**"
+        };
+        String url = request.getRequestURI();
+        return Stream.of(excluded_urls).anyMatch(x -> pathMatcher.match(x, url));
     }
 
-  
-        
-    }
-    
-
+}
