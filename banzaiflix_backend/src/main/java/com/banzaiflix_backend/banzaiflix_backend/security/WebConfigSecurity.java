@@ -27,53 +27,50 @@ import jakarta.servlet.http.HttpServletRequest;
 @Configuration
 public class WebConfigSecurity {
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-      return  http
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
 
-      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .csrf().disable()
-            .cors().configurationSource(new CorsConfigurationSource() {
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .csrf().disable()
+                .cors().configurationSource(new CorsConfigurationSource() {
 
-                @Override
-                @Nullable
-                public CorsConfiguration getCorsConfiguration(HttpServletRequest arg0) {
-                    CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedMethods(Collections.singletonList("*"));
-                    config.setAllowedHeaders(Arrays.asList("Authorization"));
-                    config.setAllowedOrigins(Collections.singletonList("*"));
-                    config.setAllowCredentials(true);
-                    config.setAllowedHeaders(Collections.singletonList("*"));
-                    config.setMaxAge(3600L);
-                    return config;
-                }
-                
+                    @Override
+                    @Nullable
+                    public CorsConfiguration getCorsConfiguration(HttpServletRequest arg0) {
+                        CorsConfiguration config = new CorsConfiguration();
+                        config.setAllowedMethods(Collections.singletonList("*"));
+                        config.setAllowedHeaders(Arrays.asList("Authorization"));
+                        config.setAllowedOrigins(Collections.singletonList("*"));
+                        config.setAllowCredentials(true);
+                        config.setAllowedHeaders(Collections.singletonList("*"));
+                        config.setMaxAge(3600L);
+                        return config;
+                    }
 
-            }).and()
-            .addFilterAfter(new JWTGeneratorFilter(), BasicAuthenticationFilter.class)
-            .addFilterBefore(new JWTValidatorFilter(), BasicAuthenticationFilter.class)
-            .authorizeHttpRequests()
-            // .requestMatchers(HttpMethod.POST, "/cadastrarUsuario").hasAnyRole("ROLE_USER")
-            // .requestMatchers(HttpMethod.GET,"/admin").hasAnyRole("ROLE_ADMIN")
-           
-           
+                }).and()
+                .addFilterAfter(new JWTGeneratorFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JWTValidatorFilter(), BasicAuthenticationFilter.class)
+                .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/teste").hasAnyRole("ROLE_USER")
+                // .requestMatchers(HttpMethod.GET,"/admin").hasAnyRole("ROLE_ADMIN")
 
-            .anyRequest().authenticated()
-            
-            
-           .and()
-           .httpBasic()
-           
-            
-            .and()
-            .build();    
+                .anyRequest().authenticated()
+
+                .and()
+                .httpBasic()
+
+                .and()
+                .build();
     }
-    // @Bean
-    // public WebSecurityCustomizer webSecurityCustomizer() {
-    //     return (web) -> web.ignoring().requestMatchers(HttpMethod.GET,"/");
-    // }
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(HttpMethod.GET, "/images/**");
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-   
+
 }

@@ -1,8 +1,7 @@
 package com.banzaiflix_backend.banzaiflix_backend.filters;
 
 import java.io.IOException;
-import java.security.Key;
-import java.security.KeyStore;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -17,8 +16,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.banzaiflix_backend.banzaiflix_backend.Interfaces.JWTInterface;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
@@ -28,37 +25,35 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class JWTGeneratorFilter extends OncePerRequestFilter {
-    
-    
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-            
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null){
+        if (authentication != null) {
             SecretKey key = Keys.hmacShaKeyFor(JWTInterface.JWT_KEY.getBytes());
-            String jwt  = Jwts.builder().setIssuer("banzaiflix").setSubject("JWT TOKEN")
-            .claim("username", authentication.getName())
-            .claim("authorities", populateAuthorities(authentication.getAuthorities()))
-            .setIssuedAt(new Date())
-            .setExpiration(new Date((new Date().getTime() + 30000000)))
-            .signWith(key).compact();
-           
+            String jwt = Jwts.builder().setIssuer("banzaiflix").setSubject("JWT TOKEN")
+                    .claim("username", authentication.getName())
+                    .claim("authorities", populateAuthorities(authentication.getAuthorities()))
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date((new Date().getTime() + 30000000)))
+                    .signWith(key).compact();
+
             Cookie cookie = new Cookie("jwt", jwt);
             cookie.setHttpOnly(true);
             response.addCookie(cookie);
 
         }
         filterChain.doFilter(request, response);
-        
+
     }
 
-    private String populateAuthorities(Collection<? extends GrantedAuthority> collection){
+    private String populateAuthorities(Collection<? extends GrantedAuthority> collection) {
         Set<String> authoritiesSet = new HashSet<>();
         for (GrantedAuthority authority : collection) {
             authoritiesSet.add(authority.getAuthority());
-            
+
         }
         return String.join(",", authoritiesSet);
     }
@@ -69,11 +64,4 @@ public class JWTGeneratorFilter extends OncePerRequestFilter {
         return !request.getServletPath().equals("/");
     }
 
-    
-
-
-   
-
-  
-    
 }
