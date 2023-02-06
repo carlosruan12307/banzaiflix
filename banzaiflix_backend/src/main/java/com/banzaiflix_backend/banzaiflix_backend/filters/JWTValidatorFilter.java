@@ -64,8 +64,10 @@ public class JWTValidatorFilter extends OncePerRequestFilter {
         // TODO Auto-generated method stub
         AntPathMatcher pathMatcher = new AntPathMatcher();
         String[] excluded_urls = {
-                "/",
-                "/brincando/**"
+                "/login",
+                "/brincando/**",
+                "/Top10",
+                "/EmAlta"
         };
         String url = request.getRequestURI();
         return Stream.of(excluded_urls).anyMatch(x -> pathMatcher.match(x, url));

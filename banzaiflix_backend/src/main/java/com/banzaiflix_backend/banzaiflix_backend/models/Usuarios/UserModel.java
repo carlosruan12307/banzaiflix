@@ -42,7 +42,7 @@ public class UserModel implements UserDetails {
     @Column(nullable = false, name = "senha", unique = true)
     @NotBlank
     private String password;
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_filme", joinColumns = @JoinColumn(name = "usuario"), inverseJoinColumns = @JoinColumn(name = "filme"))
     List<FilmModel> favoritos = new ArrayList<>();
 
