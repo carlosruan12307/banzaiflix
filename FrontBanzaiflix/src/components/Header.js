@@ -11,21 +11,24 @@ function Header() {
 
   const clickLink = (e) => {
     $("a").css("color", "white");
-    if(e.target.id === "logo-link"){
+    if (e.target.id === "logo-link") {
       $("#inicio-link").css("color", "red");
     }
-   
+
     $("#" + e.target.id).css("color", "red");
-    
   };
   return (
     <div>
-      <header className="fixed-top">
+      <header className="">
         <nav className="navbar navbar-expand-sm ts navbar-dark bg-dark">
           <div className="navbar-brand">
-            <a  href="#" >
-              <img id="logo-link" onClick={clickLink} className="logo" src={flix}></img>
-              
+            <a href="#">
+              <img
+                id="logo-link"
+                onClick={clickLink}
+                className="logo"
+                src={flix}
+              ></img>
             </a>
           </div>
           <button
@@ -37,17 +40,32 @@ function Header() {
           </button>
           <ul id="nav" className="navbar-nav navbar-collapse collapse">
             <li className="nav-item ">
-              <a id="inicio-link" onClick={clickLink} href="#" className="nav-link">
+              <a
+                id="inicio-link"
+                onClick={clickLink}
+                href="#"
+                className="nav-link"
+              >
                 Inicio
               </a>
             </li>
             <li className="nav-item">
-              <a id="series-link" onClick={clickLink} href="#" className="nav-link">
+              <a
+                id="series-link"
+                onClick={clickLink}
+                href="#"
+                className="nav-link"
+              >
                 Series
               </a>
             </li>
             <li className="nav-item">
-              <a id="filmes-link" onClick={clickLink} href="#" className="nav-link">
+              <a
+                id="filmes-link"
+                onClick={clickLink}
+                href="#"
+                className="nav-link"
+              >
                 Filmes
               </a>
             </li>
