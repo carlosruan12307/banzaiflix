@@ -40,7 +40,7 @@ public class WebConfigSecurity {
                         CorsConfiguration config = new CorsConfiguration();
                         config.setAllowedMethods(Collections.singletonList("*"));
                         config.setAllowedHeaders(Arrays.asList("Authorization"));
-                        config.setAllowedOrigins(Collections.singletonList("*"));
+                        config.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
                         config.setAllowCredentials(true);
                         config.setAllowedHeaders(Collections.singletonList("*"));
                         config.setMaxAge(3600L);
@@ -53,9 +53,10 @@ public class WebConfigSecurity {
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/teste").hasAnyRole("ROLE_USER")
                 // .requestMatchers(HttpMethod.GET,"/admin").hasAnyRole("ROLE_ADMIN")
-
-                .anyRequest().authenticated()
-
+                .requestMatchers(HttpMethod.GET, "/brincando").permitAll()
+                .requestMatchers(HttpMethod.GET, "/Top10").permitAll()
+                .requestMatchers(HttpMethod.GET, "/EmAlta").permitAll()
+                .requestMatchers(HttpMethod.GET, "/login").authenticated()
                 .and()
                 .httpBasic()
 
@@ -65,7 +66,8 @@ public class WebConfigSecurity {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(HttpMethod.GET, "/images/**");
+        return (web) -> web.ignoring().requestMatchers(HttpMethod.GET, "/images/**").and().ignoring()
+                .requestMatchers(HttpMethod.GET, "**/brincando/**");
     }
 
     @Bean
