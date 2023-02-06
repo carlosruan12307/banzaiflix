@@ -1,7 +1,13 @@
-#root body html footer {
+#root,
+body {
   width: 100vw;
+  height: 100vh;
 }
-
+.container-main {
+  height: 100%;
+  justify-content: center;
+  padding: 0px 50px;
+}
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--scroll-padding, 150px);
@@ -52,10 +58,11 @@ html {
 
 .principal {
   background-image: url("../assets/principal.png");
-  background-size: cover;
-  background-position: center 3%;
+  height: 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  height: 1000px;
+
+  object-fit: cover;
 }
 
 .btn-main {
@@ -67,19 +74,24 @@ html {
 
 .catalog {
   background-color: black;
-  height: 1690px;
+
   width: 100vw;
   color: white;
 }
-.card-header {
-  height: inherit;
+.card {
+  width: 25%;
 }
-
+.card-header {
+}
+img {
+  height: 400px;
+  width: 100%;
+}
 .cards-wrapper {
-  width: auto;
   display: flex;
   justify-content: space-around;
 }
+
 .btn-next {
   width: 40px;
 }
@@ -90,8 +102,6 @@ html {
 .footer {
   background-color: rgba(0, 0, 0, 0.938);
   color: white;
-  height: 380px;
-  width: 100vw;
 }
 
 .fa-footer-icon {
@@ -107,13 +117,23 @@ html {
   margin: 20px;
 }
 
-.cols h4 {
+.cols,
+h4 {
   margin-top: 10px;
   padding: 6px;
   color: rgb(109, 106, 106);
   font-size: 20px;
 }
-.cols h5 {
+.StrangerThings-F {
+  width: 20%;
+  height: 20%;
+  object-fit: contain;
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+}
+.cols,
+h5 {
   margin-top: 26px;
   font-size: 15px;
   color: rgb(109, 106, 106);
@@ -129,28 +149,26 @@ html {
 }
 
 @media screen and (max-width: 780px) {
-  .search {
-    display: none;
+  .StrangerThings-F {
+    width: 100%;
+    height: 100%;
   }
 }
 
 @media screen and (max-width: 314px) {
-  .sandwitch {
-    margin-left: 100px;
-  }
 }
 
 @media screen and (max-width: 1434px) {
-  .footer {
-    height: 750px;
+  .StrangerThings-F {
+    width: 60%;
+    height: 60%;
   }
 }
 
 @media screen and (max-width: 550px) {
-  .footer {
-    height: 1200px;
-  }
-  .catalog {
-    height: 900px;
+  .StrangerThings-F {
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
   }
 }

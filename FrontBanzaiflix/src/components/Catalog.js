@@ -1,15 +1,14 @@
 import React from "react";
-import test from "../assets/principal.png";
-import test1 from "../assets/banzaiflix.png";
 function Catalog({ emAlta, Top10 }) {
   return (
-    <div className="catalog">
+    <div className="catalog d-flex flex-column p-5">
       <section id="section-emAlta">
         <div
           id="banner-emAlta"
           className="carousel slide p-5"
           data-bs-ride="carousel"
         >
+          <h1 className="text-white ms-3 mb-5 ">Em Alta</h1>
           <div className="carousel-indicators">
             <button
               className="active"
@@ -22,22 +21,19 @@ function Catalog({ emAlta, Top10 }) {
             ></button>
           </div>
           <div className="carousel-inner">
-            <div className="carousel-item">
-              <div className="cards-wrapper ">
+            <div className="carousel-item ">
+              <div className="cards-wrapper  border border-primary ">
                 {emAlta
                   ? emAlta
                       .filter((e) => e.id <= 3)
-                      .map((src) => {
+                      .map((data) => {
                         return (
-                          <div
-                            className="card "
-                            style={{ height: "500px", width: "600px" }}
-                          >
+                          <div key={data.id} className="card ">
                             <div className="card-header">
                               <img
                                 alt=""
-                                className="w-100 h-100 d-block"
-                                src={"http://localhost:8080" + src.url}
+                                className=" d-block"
+                                src={"http://localhost:8080" + data.url}
                               ></img>
                             </div>
                             <div className="card-body"></div>
@@ -54,17 +50,14 @@ function Catalog({ emAlta, Top10 }) {
                 {emAlta
                   ? emAlta
                       .filter((e) => e.id > 3)
-                      .map((src) => {
+                      .map((data) => {
                         return (
-                          <div
-                            className="card "
-                            style={{ height: "500px", width: "600px" }}
-                          >
+                          <div key={data.id} className="card ">
                             <div className="card-header">
                               <img
                                 alt=""
-                                className="w-100 h-100 d-block"
-                                src={"http://localhost:8080" + src.url}
+                                className=" d-block"
+                                src={"http://localhost:8080" + data.url}
                               ></img>
                             </div>
                             <div className="card-body"></div>
@@ -118,14 +111,11 @@ function Catalog({ emAlta, Top10 }) {
                 {Top10
                   ? Top10.filter((e) => e.id <= 9).map((src) => {
                       return (
-                        <div
-                          className="card "
-                          style={{ height: "500px", width: "600px" }}
-                        >
+                        <div className="card ">
                           <div className="card-header">
                             <img
                               alt=""
-                              className="w-100 h-100 d-block"
+                              className="d-block"
                               src={"http://localhost:8080" + src.url}
                             ></img>
                           </div>
@@ -143,14 +133,11 @@ function Catalog({ emAlta, Top10 }) {
                 {Top10
                   ? Top10.filter((e) => e.id > 9).map((src) => {
                       return (
-                        <div
-                          className="card "
-                          style={{ height: "500px", width: "600px" }}
-                        >
+                        <div className="card ">
                           <div className="card-header">
                             <img
                               alt=""
-                              className="w-100 h-100 d-block"
+                              className=" d-block"
                               src={"http://localhost:8080" + src.url}
                             ></img>
                           </div>
